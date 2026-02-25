@@ -25,6 +25,7 @@ General Public License from the Free Software Foundation.
 #include <string.h>
 #include <unistd.h>
 #include <X11/Xlib.h>
+#include <X11/XKBlib.h>
 #include <X11/keysym.h>
 #include <X11/Xutil.h>
 #include <assert.h>
@@ -289,7 +290,7 @@ void process_event(XEvent *xe)
 
    switch (xe->type) {
       case KeyPress:
-         keysym = XKeycodeToKeysym(dpy,xe->xkey.keycode,0);
+        keysym = XkbKeycodeToKeysym(dpy,xe->xkey.keycode,0, xe->xkey.state & ShiftMask ? 1 : 0);
          /* first, consider the raw keysyms, to catch a few combinations of keys with shift/alt */
          switch (keysym) {
             case XK_1: if (xe->xkey.state & ShiftMask) { key='!'; return; }

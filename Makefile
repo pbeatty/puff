@@ -6,7 +6,7 @@ CFLAGS = -O2 -g
 POBJS =	puff.o pfart.o pffft.o pfmsc.o pfrw.o pfst.o pfun1.o pfun2.o pfun3.o xgraph.o
 
 puff:	$(POBJS) puff_c.o ppas.sh
-	sed 's/link.res/link.res puff_c.o -lX11/' <ppas.sh  >ppasx.sh
+	sed 's/\(link[0-9]\{0,5\}\.res\)/\1 puff_c.o -lX11/' <ppas.sh  >ppasx.sh
 	sh ppasx.sh
 
 %.o:	%.pas
