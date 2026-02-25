@@ -1,0 +1,8 @@
+*~
+\#*
+.\#*
+*.o
+*.ppu
+ppas.sh
+ppasx.sh
+link*.res
